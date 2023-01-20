@@ -23,7 +23,7 @@ type
     constructor Create(TheOwner: TComponent); override;
     destructor Destroy; override;
     procedure WriteHelp; virtual;
-    procedure RebootRouter(const aHost, aUser, aPassword, aCommand: String);
+    procedure RebootRouter(const aHost, aUser, aPassword, aCommand: String; aTest: Boolean);
     function PingRemoteHost(const aHost: String; const aTry: Integer): Boolean;
     function CheckRefererId(const aRefererId: String): Boolean;
   end;
@@ -71,7 +71,7 @@ begin
    end;
 end;
 
-procedure TArcherC7V2AutoReboot.RebootRouter(const aHost, aUser, aPassword, aCommand: String);
+procedure TArcherC7V2AutoReboot.RebootRouter(const aHost, aUser, aPassword, aCommand: String; aTest: Boolean);
 var
   IdHTTP: TIdHTTP;
   aRefererId: String;
@@ -103,10 +103,18 @@ begin
 
     if (not aRefererId.IsEmpty) and (CheckRefererId(aRefererId)) then
      begin
-     IdHTTP.Request.Referer:='http://' + aHost + '/' + aRefererId + '/userRpm/SysRebootRpm.htm';
-     IdHTTP.Get('http://' + aHost + '/' + aRefererId + '/userRpm/SysRebootRpm.htm?Reboot=' + aCommand);
+     if not aTest then
+      begin
+      IdHTTP.Request.Referer:='http://' + aHost + '/' + aRefererId + '/userRpm/SysRebootRpm.htm';
+      IdHTTP.Get('http://' + aHost + '/' + aRefererId + '/userRpm/SysRebootRpm.htm?Reboot=' + aCommand);
+      end
+       else WriteLn('[' + FormatDateTime('YYYY-MM-DD hh:nn:ss', Now) + '] Test OK, RefererId = ' + aRefererId);
      end
-      else WriteLn('[' + FormatDateTime('YYYY-MM-DD hh:nn:ss', Now) + '] Cannot restart router: incorrect RefererId from router...');
+      else
+       begin
+       if aTest then WriteLn('[' + FormatDateTime('YYYY-MM-DD hh:nn:ss', Now) + '] Test FAIL, incorrect RefererId from router...')
+                else WriteLn('[' + FormatDateTime('YYYY-MM-DD hh:nn:ss', Now) + '] Cannot restart router: incorrect RefererId from router...');
+       end;
 
    finally
     IdHTTP.Free;
@@ -120,6 +128,7 @@ var
   aUser,
   aPassword,
   aCommand: String;
+  aTest: Boolean;
 begin
 
   if (HasOption('h', 'help')) or (HasOption('v', 'version')) then
@@ -129,12 +138,14 @@ begin
    Exit;
    end;
 
+  aTest:= False;
   aHostRemote:= '8.8.8.8';
   aHostRouter:= '192.168.0.1';
   aUser:=       'admin';
   aPassword:=   'admin';
   aCommand:=    HTTPEncode('Перезагрузить');
 
+  if HasOption('t', 'test')   then aTest:=       True;
   if HasOption('w', 'watch')  then aHostRemote:= GetOptionValue('w', 'watch').Trim;
   if HasOption('r', 'router') then aHostRouter:= GetOptionValue('r', 'router').Trim;
   if HasOption('u', 'user')   then aUser:=       GetOptionValue('u', 'user').Trim;
@@ -144,8 +155,12 @@ begin
   if not PingRemoteHost(aHostRemote, 3) then
    begin
    WriteLn('[' + FormatDateTime('YYYY-MM-DD hh:nn:ss', Now) + '] Remote IP not responding, restarting router...');
-   RebootRouter(aHostRouter, aUser, aPassword, aCommand);
-   end;
+   RebootRouter(aHostRouter, aUser, aPassword, aCommand, aTest);
+   end
+    else
+     begin
+     if aTest then WriteLn('[' + FormatDateTime('YYYY-MM-DD hh:nn:ss', Now) + '] Test OK, Remote IP respond!')
+     end;
 
   Terminate;
 end;
@@ -167,8 +182,7 @@ begin
   WriteLn('Archer C7 V2 AutoReboot for FW 3.15.3 Build 180308 Rel.37724n (' +
           {$IFDEF MSWINDOWS}'Win64'   {$ENDIF}
           {$IFDEF LINUX}    'Linux64' {$ENDIF}
-          {$IFDEF DARWIN}   'macOS64' {$ENDIF}
-          + ')');
+          + ') 2023.01.20.23.30');
 
   WriteLn('(c) Jony Rh, 2023');
   WriteLn('http://www.jonyrh.ru');
@@ -178,11 +192,12 @@ begin
   WriteLn('--u, --user' +   chr(9) + 'Router Username, default "admin"');
   WriteLn('--p, --pass' +   chr(9) + 'Router Password, default "admin"');
   WriteLn('--c, --cmd' +    chr(9) + 'Router reboot command (Depends on localization), default "Перезагрузить"');
+  WriteLn('--t, --test' +   chr(9) + 'Only test, without reboot router');
   WriteLn;
   WriteLn('Examples:');
   WriteLn(ExtractFileName(ParamStr(0)) + ' --watch=8.8.8.8 --router=192.168.0.1 --user=admin --pass=admin --cmd=Перезагрузить');
-  WriteLn(ExtractFileName(ParamStr(0)) + ' --watch=8.8.8.8 --router=192.168.0.1 --user=admin --pass=admin --cmd=reboot');
-  WriteLn(ExtractFileName(ParamStr(0)) + ' --w=8.8.8.8 --r=192.168.0.1 --u=admin --p=admin --c=1');
+  WriteLn(ExtractFileName(ParamStr(0)) + ' --watch=8.8.8.8 --router=192.168.0.1 --user=admin --pass=admin --cmd=reboot --test');
+  WriteLn(ExtractFileName(ParamStr(0)) + ' --w=8.8.8.8 --r=192.168.0.1 --u=admin --p=admin --c=1 --t');
   WriteLn(ExtractFileName(ParamStr(0)) + ' --u=admin --p=admin');
 
   {$IFDEF UNIX} WriteLn; {$ENDIF}

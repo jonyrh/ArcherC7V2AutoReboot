@@ -9,9 +9,9 @@
         <Filename Value="ArcherC7V2AutoReboot.lpr"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="158"/>
-        <CursorPos X="24" Y="182"/>
-        <UsageCount Value="20"/>
+        <TopLine Value="168"/>
+        <CursorPos Y="185"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -23,7 +23,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="2">
+    <JumpHistory HistoryIndex="4">
       <Position>
         <Filename Value="ArcherC7V2AutoReboot.lpr"/>
         <Caret Line="9" Column="47"/>
@@ -35,6 +35,14 @@
       <Position>
         <Filename Value="ArcherC7V2AutoReboot.lpr"/>
         <Caret Line="12" Column="53"/>
+      </Position>
+      <Position>
+        <Filename Value="ArcherC7V2AutoReboot.lpr"/>
+        <Caret Line="149" Column="63" TopLine="118"/>
+      </Position>
+      <Position>
+        <Filename Value="ArcherC7V2AutoReboot.lpr"/>
+        <Caret Line="26" Column="23" TopLine="2"/>
       </Position>
     </JumpHistory>
     <RunParams>
