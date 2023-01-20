@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="ArcherC7V2AutoReboot.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="158"/>
+        <CursorPos X="24" Y="182"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\rtl-objpas\src\inc\strutils.pp"/>
+        <UnitName Value="StrUtils"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="25"/>
+        <CursorPos X="22" Y="40"/>
+        <UsageCount Value="10"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="2">
+      <Position>
+        <Filename Value="ArcherC7V2AutoReboot.lpr"/>
+        <Caret Line="9" Column="47"/>
+      </Position>
+      <Position>
+        <Filename Value="ArcherC7V2AutoReboot.lpr"/>
+        <Caret Line="64" Column="30" TopLine="19"/>
+      </Position>
+      <Position>
+        <Filename Value="ArcherC7V2AutoReboot.lpr"/>
+        <Caret Line="12" Column="53"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>
