@@ -16,6 +16,18 @@ ArcherC7V2AutoReboot --w=8.8.8.8 --r=192.168.0.1 --u=admin --p=admin --c=1 --t
 ArcherC7V2AutoReboot --u=admin --p=admin
 ```
 
+**Cron example:**
+
+```
+sudo crontab -e
+```
+
+```shell
+# ПЕРЕЗАГРУЗКА РОУТЕРА С ВЕДЕНИЕМ ЛОГА
+# Rebooting router with log
+0,15,30,45 * * * * /home/jonyrh/ArcherC7V2AutoReboot --u=admin --p=password >> /var/log/ArcherC7V2AutoReboot.log 2>&1
+```
+
 (c) Jony Rh, 2023
 
 http://www.jonyrh.ru
