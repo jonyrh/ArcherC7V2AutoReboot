@@ -3,14 +3,15 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="12"/>
-    <BuildModes Active="Default"/>
+    <ManyBuildModesSelection Value="x86_64-win64,x86_64-linux,x86_64-darwin,aarch64-linux,aarch64-darwin"/>
+    <BuildModes Active="x86_64-win64"/>
     <Units>
       <Unit>
         <Filename Value="ArcherC7V2AutoReboot.lpr"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="168"/>
-        <CursorPos Y="185"/>
+        <TopLine Value="182"/>
+        <CursorPos X="41" Y="192"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit>
@@ -23,7 +24,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="4">
+    <JumpHistory HistoryIndex="6">
       <Position>
         <Filename Value="ArcherC7V2AutoReboot.lpr"/>
         <Caret Line="9" Column="47"/>
@@ -43,6 +44,14 @@
       <Position>
         <Filename Value="ArcherC7V2AutoReboot.lpr"/>
         <Caret Line="26" Column="23" TopLine="2"/>
+      </Position>
+      <Position>
+        <Filename Value="ArcherC7V2AutoReboot.lpr"/>
+        <Caret Line="185" Column="31" TopLine="168"/>
+      </Position>
+      <Position>
+        <Filename Value="ArcherC7V2AutoReboot.lpr"/>
+        <Caret Line="192" Column="40" TopLine="182"/>
       </Position>
     </JumpHistory>
     <RunParams>

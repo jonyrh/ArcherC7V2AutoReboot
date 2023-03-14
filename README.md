@@ -1,7 +1,7 @@
 # Archer C7 V2 AutoReboot for FW 3.15.3 Build 180308 Rel.37724n
-TP-Link Archer C7 V2 AutoReboot - utility for Linux Cron or Windows Scheduler. If remote IP not respond then utility restart router (Win64/Linux64) for FW 3.15.3 Build 180308 Rel.37724n (RU, EN, and other localizations)
+TP-Link Archer C7 V2 AutoReboot - cross-utility (x86_64/aarch64, linux/darwin/windows) for using in Scheduler or Cron. If remote IP not respond then utility restart router. Support official/native FW 3.15.3 Build 180308 Rel.37724n (RU, EN, and other localizations)
 
-```
+```shell
 --w, --watch    Remote IP address for ping, default "8.8.8.8"
 --r, --router   Router local IP address, default "192.168.0.1"
 --u, --user     Router Username, default "admin"
@@ -18,11 +18,11 @@ ArcherC7V2AutoReboot --u=admin --p=admin
 
 **Cron example:**
 
-```
+```shell
 sudo crontab -e
 ```
 
-```shell
+```bash
 # ПЕРЕЗАГРУЗКА РОУТЕРА С ВЕДЕНИЕМ ЛОГА
 # Rebooting router with log
 0,15,30,45 * * * * /home/jonyrh/ArcherC7V2AutoReboot --u=admin --p=password >> /var/log/ArcherC7V2AutoReboot.log 2>&1

@@ -28,6 +28,15 @@ type
     function CheckRefererId(const aRefererId: String): Boolean;
   end;
 
+const
+    AppVersion   = '2023.03.14.20.00'; // 'YYYY.MM.DD.HH.MM';  - ДАТА И ВРЕМЯ РЕЛИЗА
+
+    AppPlatform  = {$IFDEF CPUX86_64}  'x86_64'  {$ENDIF}
+                   {$IFDEF CPUAARCH64} 'aarch64' {$ENDIF} + '-' +
+                   {$IFDEF WIN64}      'win64'   {$ENDIF}
+                   {$IFDEF LINUX}      'linux'   {$ENDIF}
+                   {$IFDEF DARWIN}     'darwin'  {$ENDIF} ;
+
 { TArcherC7V2AutoReboot }
 
 function TArcherC7V2AutoReboot.PingRemoteHost(const aHost: String; const aTry: Integer): Boolean;
@@ -179,10 +188,8 @@ end;
 procedure TArcherC7V2AutoReboot.WriteHelp;
 begin
   WriteLn;
-  WriteLn('Archer C7 V2 AutoReboot for FW 3.15.3 Build 180308 Rel.37724n (' +
-          {$IFDEF MSWINDOWS}'Win64'   {$ENDIF}
-          {$IFDEF LINUX}    'Linux64' {$ENDIF}
-          + ') 2023.01.20.23.30');
+  WriteLn('AutoReboot for Archer C7 V2 (FW 3.15.3 Build 180308 Rel.37724n)');
+  WriteLn('v.' + AppVersion + '.' + AppPlatform);
 
   WriteLn('(c) Jony Rh, 2023');
   WriteLn('http://www.jonyrh.ru');
@@ -207,7 +214,7 @@ var
   Application: TArcherC7V2AutoReboot;
 begin
   Application:=TArcherC7V2AutoReboot.Create(nil);
-  Application.Title:='Archer C7 V2 AutoReboot';
+  Application.Title:='AutoReboot for Archer C7 V2';
   Application.Run;
   Application.Free;
 end.
